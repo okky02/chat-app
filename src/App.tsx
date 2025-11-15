@@ -1,29 +1,27 @@
 import { useAuth } from "./hooks/useAuth";
+import Chat from "./components/Chat";
 
 export default function App() {
   const { user, login, logout } = useAuth();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-4">
+    <div className="p-4">
       {user ? (
         <>
-          <h1 className="text-2xl font-bold">Welcome, {user.displayName}</h1>
-          <img
-            src={user.photoURL || ""}
-            alt="profile"
-            className="w-20 h-20 rounded-full"
-          />
-          <button
-            onClick={logout}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-          >
-            Logout
-          </button>
+          <div className="flex items-center gap-3 mb-4">
+            <img src={user.photoURL!} className="w-10 h-10 rounded-full" />
+            <p className="font-semibold">{user.displayName}</p>
+            <button onClick={logout} className="ml-auto text-red-500">
+              Logout
+            </button>
+          </div>
+
+          <Chat />
         </>
       ) : (
         <button
           onClick={login}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
         >
           Login with Google
         </button>
