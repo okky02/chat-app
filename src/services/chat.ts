@@ -11,7 +11,6 @@ import type { Message } from "../types/Message";
 
 const messagesRef = collection(db, "messages");
 
-// kirim pesan
 export const sendMessage = async (
   text: string,
   user: { uid: string; displayName: string | null; photoURL: string | null }
@@ -27,7 +26,7 @@ export const sendMessage = async (
   });
 };
 
-// listen realtime (setiap msg baru masuk)
+
 export const subscribeMessages = (callback: (msgs: Message[]) => void) => {
   const q = query(messagesRef, orderBy("createdAt", "asc"));
 
